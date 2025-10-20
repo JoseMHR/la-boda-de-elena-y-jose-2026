@@ -37,6 +37,8 @@
             border-radius: 0.75rem;
             font-weight: 600;
             transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block; /* Para que el botón se comporte como un enlace */
+            text-decoration: none;
         }
         .btn-primary:hover {
             background-color: #2563eb;
@@ -59,16 +61,15 @@
             font-weight: 600;
             color: #3b82f6;
         }
-        /* -- Estilo para destacar el tab de confirmar -- */
         .nav-item-highlight {
-            background-color: #dbeafe; /* Azul claro */
-            color: #2563eb; /* Azul oscuro */
+            background-color: #dbeafe;
+            color: #2563eb;
             font-weight: 700;
-            border-radius: 9999px; /* Píldora */
+            border-radius: 9999px;
+            text-decoration: none; /* Quitar subrayado del enlace */
         }
-        .nav-item-highlight.active {
-             background-color: #3b82f6;
-             color: white;
+        .nav-item-highlight:hover {
+            background-color: #bfdbfe; /* Un poco más oscuro al pasar el ratón */
         }
         .text-gradient {
             background-image: linear-gradient(to right, #3b82f6, #60a5fa);
@@ -86,7 +87,6 @@
             
             <img src="imagenBoda.jpg" alt="Elena y José" class="mx-auto rounded-xl shadow-lg mb-8 w-full max-w-sm object-cover h-60" style="object-position: center 25%;">
             
-            <!-- Textos de inicio actualizados -->
             <p class="text-lg sm:text-xl text-gray-700 mb-4">La boda de</p>
             <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Elena & José</h2>
             <p class="text-xl sm:text-2xl text-gray-600 mb-8">En Málaga, Junio 2026</p>
@@ -99,9 +99,12 @@
 
             <nav class="mb-8 border-b-2 border-gray-200">
                 <ul class="flex justify-center space-x-2 sm:space-x-6 text-base sm:text-lg text-gray-600">
+                    <!-- El tab de detalles sigue funcionando como antes -->
                     <li class="nav-item active" onclick="showSubSection('our-wedding-details')">Detalles</li>
-                    <!-- Tab de confirmar asistencia destacado -->
-                    <li class="nav-item nav-item-highlight" onclick="showSubSection('rsvp-form')">Confirmar Asistencia</li>
+                    <!-- El tab de confirmar ahora es un enlace directo al formulario -->
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6a3smmYi7etG4jb_AVyI86lNF73TMx_lqRMQocsJpHt3Akg/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer" class="nav-item nav-item-highlight">
+                        Confirmar Asistencia
+                    </a>
                 </ul>
             </nav>
 
@@ -123,7 +126,6 @@
                     <div class="bg-indigo-50 p-4 rounded-lg shadow-sm flex items-start">
                         <span class="text-2xl mr-4">📸</span>
                         <div>
-                            <!-- Texto del Photocall actualizado -->
                             <h3 class="font-semibold text-lg sm:text-xl text-gray-800">Photocall</h3>
                             <p class="text-gray-600">Posa y llévate un recuerdo divertido de nuestro gran día.</p>
                         </div>
@@ -162,29 +164,23 @@
                     Y esto es solo un adelanto... ¡habrá muchas más sorpresas y detalles que harán de este día algo realmente mágico!
                 </p>
 
-                <!-- Nuevo botón para confirmar asistencia -->
+                <!-- El botón ahora es también un enlace directo al formulario -->
                 <div class="text-center mt-8">
-                    <button onclick="showSubSection('rsvp-form')" class="btn-primary">¡Quiero Confirmar!</button>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6a3smmYi7etG4jb_AVyI86lNF73TMx_lqRMQocsJpHt3Akg/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                        ¡Quiero Confirmar!
+                    </a>
                 </div>
 
-                <!-- Imagen actualizada -->
                 <img src="imagenDivertida.png" alt="Fiesta y Diversión" class="mx-auto rounded-xl shadow-lg mt-8 w-full max-w-sm">
             </div>
+            
+            <!-- Ya no necesitamos la sección del formulario incrustado -->
 
-            <div id="rsvp-form" class="sub-section hidden text-left">
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center">¡Confirma tu Asistencia!</h2>
-                <p class="text-base sm:text-lg text-gray-700 mb-6 text-center">
-                    Nos encantaría que nos acompañaras. Por favor, rellena el formulario para confirmar.
-                </p>
-                
-                <div id="google-form-container" class="bg-gray-50 rounded-xl shadow-inner overflow-hidden">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd6a3smmYi7etG4jb_AVyI86lNF73TMx_lqRMQocsJpHt3Akg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-                </div>
-            </div>
         </div>
     </div>
 
     <script>
+        // La lógica de JavaScript ahora es más sencilla
         function showSection(id) {
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active-section');
@@ -195,34 +191,21 @@
                 sectionToShow.classList.remove('hidden');
                 sectionToShow.classList.add('active-section');
             }
-
-            if (id === 'main-info-screen') {
-                showSubSection('our-wedding-details');
-                const firstNavItem = document.querySelector('.nav-item');
-                if (firstNavItem) {
-                    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-                    firstNavItem.classList.add('active');
-                }
-            }
         }
 
+        // Esta función ya no es necesaria, pero la dejamos por si se usa en el futuro
         function showSubSection(id) {
-            document.querySelectorAll('.sub-section').forEach(sub => {
-                sub.classList.remove('active-sub-section');
-                sub.classList.add('hidden');
-            });
-            const subSectionToShow = document.getElementById(id);
-            if(subSectionToShow) {
-                subSectionToShow.classList.remove('hidden');
-                subSectionToShow.classList.add('active-sub-section');
-            }
-
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            const activeNavItem = document.querySelector(`[onclick="showSubSection('${id}')"]`);
-            if (activeNavItem) {
-                activeNavItem.classList.add('active');
+            // Este script solo gestiona la sección 'detalles'
+            if (id === 'our-wedding-details') {
+                 document.querySelectorAll('.sub-section').forEach(sub => {
+                    sub.classList.remove('active-sub-section');
+                    sub.classList.add('hidden');
+                });
+                const subSectionToShow = document.getElementById(id);
+                if(subSectionToShow) {
+                    subSectionToShow.classList.remove('hidden');
+                    subSectionToShow.classList.add('active-sub-section');
+                }
             }
         }
     </script>
