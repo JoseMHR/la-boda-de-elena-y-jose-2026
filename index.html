@@ -6,7 +6,11 @@
     <title>¡Nos Casamos! Elena & José</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Fuentes de Google: Inter para el cuerpo y Dancing Script para el toque especial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -37,7 +41,7 @@
             border-radius: 0.75rem;
             font-weight: 600;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            display: inline-block; /* Para que el botón se comporte como un enlace */
+            display: inline-block;
             text-decoration: none;
         }
         .btn-primary:hover {
@@ -66,15 +70,19 @@
             color: #2563eb;
             font-weight: 700;
             border-radius: 9999px;
-            text-decoration: none; /* Quitar subrayado del enlace */
+            text-decoration: none;
         }
         .nav-item-highlight:hover {
-            background-color: #bfdbfe; /* Un poco más oscuro al pasar el ratón */
+            background-color: #bfdbfe;
         }
         .text-gradient {
             background-image: linear-gradient(to right, #3b82f6, #60a5fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        /* Nueva clase para la tipografía especial */
+        .font-special {
+            font-family: 'Dancing Script', cursive;
         }
     </style>
 </head>
@@ -99,9 +107,7 @@
 
             <nav class="mb-8 border-b-2 border-gray-200">
                 <ul class="flex justify-center space-x-2 sm:space-x-6 text-base sm:text-lg text-gray-600">
-                    <!-- El tab de detalles sigue funcionando como antes -->
                     <li class="nav-item active" onclick="showSubSection('our-wedding-details')">Detalles</li>
-                    <!-- El tab de confirmar ahora es un enlace directo al formulario -->
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6a3smmYi7etG4jb_AVyI86lNF73TMx_lqRMQocsJpHt3Akg/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer" class="nav-item nav-item-highlight">
                         Confirmar Asistencia
                     </a>
@@ -164,7 +170,6 @@
                     Y esto es solo un adelanto... ¡habrá muchas más sorpresas y detalles que harán de este día algo realmente mágico!
                 </p>
 
-                <!-- El botón ahora es también un enlace directo al formulario -->
                 <div class="text-center mt-8">
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6a3smmYi7etG4jb_AVyI86lNF73TMx_lqRMQocsJpHt3Akg/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer" class="btn-primary">
                         ¡Quiero Confirmar!
@@ -172,15 +177,18 @@
                 </div>
 
                 <img src="imagenDivertida.png" alt="Fiesta y Diversión" class="mx-auto rounded-xl shadow-lg mt-8 w-full max-w-sm">
+
+                <!-- Mensaje final actualizado con nueva tipografía -->
+                <div class="mt-10 text-center">
+                    <h3 class="text-5xl sm:text-6xl font-special text-gradient">¡Vente con nosotros!</h3>
+                </div>
+
             </div>
-            
-            <!-- Ya no necesitamos la sección del formulario incrustado -->
 
         </div>
     </div>
 
     <script>
-        // La lógica de JavaScript ahora es más sencilla
         function showSection(id) {
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active-section');
@@ -192,10 +200,8 @@
                 sectionToShow.classList.add('active-section');
             }
         }
-
-        // Esta función ya no es necesaria, pero la dejamos por si se usa en el futuro
+        
         function showSubSection(id) {
-            // Este script solo gestiona la sección 'detalles'
             if (id === 'our-wedding-details') {
                  document.querySelectorAll('.sub-section').forEach(sub => {
                     sub.classList.remove('active-sub-section');
